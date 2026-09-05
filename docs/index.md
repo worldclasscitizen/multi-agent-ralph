@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: Ralph
-  text: Quality-first multi-agent orchestration
-  tagline: Maximize verified software quality, then optimize time and cost without hiding the trade-off.
+  text: Graph-native agent orchestration
+  tagline: Isolated Ralph Loops, durable evidence, and guarded Git results. Version 0.3.0.
   actions:
     - theme: brand
       text: Get started
@@ -14,8 +14,8 @@ hero:
       link: /reliability/verification
 
 features:
-  - title: Your model portfolio
-    details: Combine authenticated Codex, Claude Code, Antigravity, Gemini CLI, and API providers. Ralph routes within the connections you authorize.
+  - title: Your local graph
+    details: Decompose independent work into a DAG, run isolated workers, and inspect each node before results reach your branch.
   - title: Evidence, not context faith
     details: Contracts, EvidencePackets, deterministic verification, critic evidence, and Git checkpoints remain recoverable outside any model session.
   - title: Quality, time, and cost

@@ -68,6 +68,9 @@ export interface ModelDescriptor {
 }
 
 export interface AgentRequest {
+  compactPrompt?: string;
+  generation?: number;
+  iteration?: number;
   runId: string;
   nodeId: string;
   role: AgentRole;
@@ -76,6 +79,9 @@ export interface AgentRequest {
   prompt: string;
   sessionId?: string;
   tools?: ToolDefinition[];
+  writePaths?: string[];
+  excludePaths?: string[];
+  readPaths?: string[];
 }
 
 export interface AgentUsage {
@@ -99,6 +105,7 @@ export interface AgentResult {
 }
 
 export type ProviderErrorKind =
+  | "context_overflow"
   | "rate_limit"
   | "quota"
   | "timeout"
@@ -117,6 +124,7 @@ export interface ProviderError {
   message: string;
   retryable: boolean;
   statusCode?: number;
+  retryAfterMs?: number;
   evidencePath?: string;
 }
 
@@ -172,31 +180,34 @@ export interface ToolDefinition {
 }
 
 export interface CatalogModel {
+  qualityTier?: "unrated" | "measured";
+  checkedAt?: string;
   provider: string;
   adapter: string;
   modelId: string;
   displayName: string;
-  releasedAt: string;
+  releasedAt?: string;
   expiresAt: string;
   capabilities: {
-    reasoning: number;
-    coding: number;
+    reasoning: number | null;
+    coding: number | null;
     structuredOutput: boolean;
     vision: boolean;
     toolUse: boolean;
     longContext: boolean;
   };
-  taskAffinity: Record<TaskType, number>;
-  costTier: number;
-  latencyTier: number;
-  reliabilityBaseline: number;
+  taskAffinity: Record<TaskType, number | null>;
+  costTier: number | null;
+  latencyTier: number | null;
+  reliabilityBaseline: number | null;
   supportedEfforts: string[];
   recommendedEffort: string;
   evidence: Array<{ source: string; checkedAt: string }>;
 }
 
 export interface ModelCatalog {
-  schemaVersion: 1;
+  schemaVersion: 1 | 2;
+  keyId?: string;
   version: number;
   generatedAt: string;
   models: CatalogModel[];
@@ -239,7 +250,11 @@ export interface RoutePolicy {
 }
 
 export interface RouteDecision {
-  boundary: "contract_approval" | "iteration_start" | "failure" | "boundary_adjudication";
+  boundary:
+    | "contract_approval"
+    | "iteration_start"
+    | "failure"
+    | "boundary_adjudication";
   taskType: TaskType;
   riskTier: RiskTier;
   connectionId: string;
@@ -281,7 +296,11 @@ export interface EvidencePacket {
     ok: boolean;
     exitCode: number;
     summary: string;
-    gates?: Array<{ id: string; status: "pass" | "fail" | "not_applicable"; evidence: string[] }>;
+    gates?: Array<{
+      id: string;
+      status: "pass" | "fail" | "not_applicable";
+      evidence: string[];
+    }>;
   };
   critic?: CriticAssessment;
   failureFingerprint?: string;
@@ -291,6 +310,7 @@ export interface EvidencePacket {
 }
 
 export interface ProjectConfig {
+  operationalMeasurements?: import("./gateway/measurements.js").OperationalMeasurement[];
   schemaVersion: 1;
   projectRoot: string;
   preset: ExecutionProfile;
@@ -311,7 +331,14 @@ export interface ProjectConfig {
   catalogVersion: number;
 }
 
-export type RunVerdict = "running" | "pass" | "retry" | "needs_operator" | "failed" | "interrupted" | "interrupted_partial";
+export type RunVerdict =
+  | "running"
+  | "pass"
+  | "retry"
+  | "needs_operator"
+  | "failed"
+  | "interrupted"
+  | "interrupted_partial";
 
 export interface RunState {
   id: string;

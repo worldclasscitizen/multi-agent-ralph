@@ -1,0 +1,300 @@
+{
+  "schemaVersion": 2,
+  "kind": "end_to_end",
+  "subject": {
+    "version": "0.3.0",
+    "sourceCommit": "b1acb2dea2e79048f40d6241ce2f467a4cc0dc82",
+    "sourceTree": "76c08a26e216d9ba255e2f25cf847f57747f1d4f",
+    "runtimeDigest": "54fff37bd1a6eedd75a26603c38f02ab4833a59107d16e1313e6ef001fce920c",
+    "dependencyDigest": "e0d2ccd8f840e5a424b21f3068708b8e76bfbb4c20f7f1debaf4b10fcc25c311",
+    "testDigest": "e31d83647f029807f3d124d8514e29175f38583ab89da6a15b3197faa504c350"
+  },
+  "checkedAt": "2026-09-05T15:53:32.078Z",
+  "runner": {
+    "platform": "win32",
+    "node": "v24.11.1"
+  },
+  "status": "fail",
+  "checks": [
+    {
+      "name": "generated_contract_and_dag",
+      "passed": false
+    },
+    {
+      "name": "exact_plan_approval",
+      "passed": false
+    },
+    {
+      "name": "isolated_scoped_workers",
+      "passed": false
+    },
+    {
+      "name": "behavior_and_independent_review",
+      "passed": false
+    },
+    {
+      "name": "integration_and_final_validation",
+      "passed": false
+    },
+    {
+      "name": "branch_delivery_completed",
+      "passed": false
+    },
+    {
+      "name": "external_oracle_and_frozen_tests",
+      "passed": false
+    },
+    {
+      "name": "persistent_live_allowance",
+      "passed": false
+    }
+  ],
+  "details": {
+    "mode": "live",
+    "subject": {
+      "version": "0.3.0",
+      "sourceCommit": "b1acb2dea2e79048f40d6241ce2f467a4cc0dc82",
+      "sourceTree": "76c08a26e216d9ba255e2f25cf847f57747f1d4f",
+      "runtimeDigest": "54fff37bd1a6eedd75a26603c38f02ab4833a59107d16e1313e6ef001fce920c",
+      "dependencyDigest": "e0d2ccd8f840e5a424b21f3068708b8e76bfbb4c20f7f1debaf4b10fcc25c311",
+      "testDigest": "e31d83647f029807f3d124d8514e29175f38583ab89da6a15b3197faa504c350"
+    },
+    "model": "gpt-5.6-luna",
+    "cliVersion": "codex-cli 0.153.1",
+    "passed": false,
+    "status": "failed",
+    "calls": 2,
+    "durationMs": 38158,
+    "injectedContract": false,
+    "injectedGraph": false,
+    "allowance": {
+      "schemaVersion": 1,
+      "releaseId": "ralph-0.3.0",
+      "maxCalls": 24,
+      "maxActiveMs": 1800000,
+      "apiSpendUsd": 0,
+      "calls": 17,
+      "activeMs": 515096,
+      "pending": null,
+      "attempts": [
+        {
+          "attemptId": "400ae506-06a9-4b83-ac27-a72def403d20",
+          "purpose": "conformance/probe",
+          "durationMs": 4709,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 14303,
+            "outputTokens": 16,
+            "cachedTokens": 9984,
+            "reasoningTokens": 0,
+            "totalTokens": 14319
+          }
+        },
+        {
+          "attemptId": "733f4cb2-87a7-4f3b-809c-478f81a106e4",
+          "purpose": "conformance/worker",
+          "durationMs": 21322,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 61676,
+            "outputTokens": 420,
+            "cachedTokens": 55296,
+            "reasoningTokens": 115,
+            "totalTokens": 62096
+          }
+        },
+        {
+          "attemptId": "15c6a9a7-b7c5-4029-9eaa-74a9aacd2b80",
+          "purpose": "conformance/isolated",
+          "durationMs": 5604,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 14304,
+            "outputTokens": 12,
+            "cachedTokens": 9984,
+            "reasoningTokens": 0,
+            "totalTokens": 14316
+          }
+        },
+        {
+          "attemptId": "6f9dda6a-f056-415a-91e0-f98859b483f2",
+          "purpose": "conformance/cancel",
+          "durationMs": 495,
+          "outcome": "failed",
+          "usage": null
+        },
+        {
+          "attemptId": "1242c9cb-c6b7-4be0-8079-2c1435fb1c24",
+          "purpose": "baseline-1/critic",
+          "durationMs": 41999,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 64523,
+            "outputTokens": 1778,
+            "cachedTokens": 48384,
+            "reasoningTokens": 305,
+            "totalTokens": 66301
+          }
+        },
+        {
+          "attemptId": "abdd9ec6-beb4-44ba-9546-6a0b773b2472",
+          "purpose": "baseline-1/metaPrompter",
+          "durationMs": 14867,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 19438,
+            "outputTokens": 566,
+            "cachedTokens": 11008,
+            "reasoningTokens": 57,
+            "totalTokens": 20004
+          }
+        },
+        {
+          "attemptId": "c05068f2-6fc2-4fd4-b320-5a4e5702d97b",
+          "purpose": "baseline-1/worker",
+          "durationMs": 62292,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 136236,
+            "outputTokens": 2140,
+            "cachedTokens": 118272,
+            "reasoningTokens": 253,
+            "totalTokens": 138376
+          }
+        },
+        {
+          "attemptId": "923209f1-c651-4ef2-9e32-2ddcd83239d8",
+          "purpose": "baseline-1/critic",
+          "durationMs": 53846,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 84637,
+            "outputTokens": 2306,
+            "cachedTokens": 69632,
+            "reasoningTokens": 517,
+            "totalTokens": 86943
+          }
+        },
+        {
+          "attemptId": "024246de-7c69-4a7e-9e3c-68ecce6232ba",
+          "purpose": "baseline-1/adjudicator",
+          "durationMs": 38559,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 62054,
+            "outputTokens": 1503,
+            "cachedTokens": 50432,
+            "reasoningTokens": 219,
+            "totalTokens": 63557
+          }
+        },
+        {
+          "attemptId": "fdd676c3-902d-4ca2-8b31-6a93216e596f",
+          "purpose": "candidate-2/worker",
+          "durationMs": 40013,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 72084,
+            "outputTokens": 1344,
+            "cachedTokens": 61440,
+            "reasoningTokens": 136,
+            "totalTokens": 73428
+          }
+        },
+        {
+          "attemptId": "caaf9524-4041-4d2c-9819-1f213a9b4aac",
+          "purpose": "candidate-2/worker",
+          "durationMs": 82883,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 170863,
+            "outputTokens": 2525,
+            "cachedTokens": 152576,
+            "reasoningTokens": 324,
+            "totalTokens": 173388
+          }
+        },
+        {
+          "attemptId": "8bd60f88-f540-4e9f-803b-537d1d93d3f1",
+          "purpose": "candidate-2/critic",
+          "durationMs": 22330,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 17090,
+            "outputTokens": 1015,
+            "cachedTokens": 9984,
+            "reasoningTokens": 170,
+            "totalTokens": 18105
+          }
+        },
+        {
+          "attemptId": "20fbf8b7-5b1e-4865-8f9b-828bf4da4ef4",
+          "purpose": "candidate-2/critic",
+          "durationMs": 24720,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 17120,
+            "outputTokens": 1162,
+            "cachedTokens": 5888,
+            "reasoningTokens": 261,
+            "totalTokens": 18282
+          }
+        },
+        {
+          "attemptId": "99b07e25-813c-44a1-9a3d-3e208ed1ee57",
+          "purpose": "candidate-2/worker",
+          "durationMs": 45936,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 121194,
+            "outputTokens": 1549,
+            "cachedTokens": 102912,
+            "reasoningTokens": 308,
+            "totalTokens": 122743
+          }
+        },
+        {
+          "attemptId": "eb02d41c-9f72-47e5-9af3-2e08f1b50f28",
+          "purpose": "candidate-2/adjudicator",
+          "durationMs": 21137,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 17121,
+            "outputTokens": 943,
+            "cachedTokens": 12032,
+            "reasoningTokens": 160,
+            "totalTokens": 18064
+          }
+        },
+        {
+          "attemptId": "3f2c9857-6e66-4668-8260-ea15ad2ba0c2",
+          "purpose": "functional/contract-planner/contractPlanner",
+          "durationMs": 17883,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 14793,
+            "outputTokens": 770,
+            "cachedTokens": 9984,
+            "reasoningTokens": 110,
+            "totalTokens": 15563
+          }
+        },
+        {
+          "attemptId": "55ae7502-44c8-467f-9f1b-307cf2836f39",
+          "purpose": "functional/contract-planner/contractPlanner",
+          "durationMs": 16501,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 14813,
+            "outputTokens": 697,
+            "cachedTokens": 9984,
+            "reasoningTokens": 47,
+            "totalTokens": 15510
+          }
+        }
+      ]
+    },
+    "failure": "Inspect the retained functional campaign; completion was not established",
+    "scope": "Windows, recorded Node/model, fresh Codex CLI sessions through the metered generic-process bridge. Natural-language contract and DAG; independent worktrees; scoped behavior checks, independent assessments and external oracle. Single connection concurrency remains one."
+  }
+}

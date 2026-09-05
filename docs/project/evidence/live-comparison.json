@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 1,
+  "kind": "comparison",
+  "subject": {
+    "version": "0.3.0",
+    "sourceCommit": "8d6fb34aca21035a7609c0eaaabb7e66016e410f",
+    "sourceTree": "7c586d928bf313aee50482542d8a9ded7e9c1a26",
+    "runtimeDigest": "c2d122245ded30e860bc3175384c3b880058b843840730c48e17d75b301e2098",
+    "dependencyDigest": "e0d2ccd8f840e5a424b21f3068708b8e76bfbb4c20f7f1debaf4b10fcc25c311",
+    "testDigest": "0b88b78e824a76ee714591cb04ed4fa5fbb5b65d1459e223dd2e87cea11afbdd"
+  },
+  "checkedAt": "2026-09-04T23:45:42.445Z",
+  "runner": {
+    "platform": "win32",
+    "node": "v24.11.1"
+  },
+  "status": "fail",
+  "checks": [
+    {
+      "name": "four frozen comparisons",
+      "passed": false
+    },
+    {
+      "name": "independent acceptance and runtime completion",
+      "passed": false
+    },
+    {
+      "name": "fixed allowance",
+      "passed": true
+    }
+  ],
+  "details": {
+    "baselineCommit": "e04b387fca1b10ae6668b6b6223fb8c8a530712a",
+    "model": "gpt-5.6-luna",
+    "observations": [
+      {
+        "version": "baseline",
+        "repetition": 1,
+        "passed": true,
+        "status": "pass",
+        "durationMs": 217944,
+        "calls": 5
+      },
+      {
+        "version": "candidate",
+        "repetition": 1,
+        "passed": false,
+        "status": "awaiting_input",
+        "durationMs": 241533,
+        "calls": 6,
+        "error": "Runtime paused for insufficient behavioral evidence after its six-call comparison ceiling; final integration and external acceptance were not reached"
+      }
+    ],
+    "allowance": {
+      "schemaVersion": 1,
+      "releaseId": "ralph-0.3.0",
+      "maxCalls": 24,
+      "maxActiveMs": 1800000,
+      "apiSpendUsd": 0,
+      "calls": 15,
+      "activeMs": 480712,
+      "pending": null,
+      "attempts": [
+        {
+          "attemptId": "400ae506-06a9-4b83-ac27-a72def403d20",
+          "purpose": "conformance/probe",
+          "durationMs": 4709,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 14303,
+            "outputTokens": 16,
+            "cachedTokens": 9984,
+            "reasoningTokens": 0,
+            "totalTokens": 14319
+          }
+        },
+        {
+          "attemptId": "733f4cb2-87a7-4f3b-809c-478f81a106e4",
+          "purpose": "conformance/worker",
+          "durationMs": 21322,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 61676,
+            "outputTokens": 420,
+            "cachedTokens": 55296,
+            "reasoningTokens": 115,
+            "totalTokens": 62096
+          }
+        },
+        {
+          "attemptId": "15c6a9a7-b7c5-4029-9eaa-74a9aacd2b80",
+          "purpose": "conformance/isolated",
+          "durationMs": 5604,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 14304,
+            "outputTokens": 12,
+            "cachedTokens": 9984,
+            "reasoningTokens": 0,
+            "totalTokens": 14316
+          }
+        },
+        {
+          "attemptId": "6f9dda6a-f056-415a-91e0-f98859b483f2",
+          "purpose": "conformance/cancel",
+          "durationMs": 495,
+          "outcome": "failed",
+          "usage": null
+        },
+        {
+          "attemptId": "1242c9cb-c6b7-4be0-8079-2c1435fb1c24",
+          "purpose": "baseline-1/critic",
+          "durationMs": 41999,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 64523,
+            "outputTokens": 1778,
+            "cachedTokens": 48384,
+            "reasoningTokens": 305,
+            "totalTokens": 66301
+          }
+        },
+        {
+          "attemptId": "abdd9ec6-beb4-44ba-9546-6a0b773b2472",
+          "purpose": "baseline-1/metaPrompter",
+          "durationMs": 14867,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 19438,
+            "outputTokens": 566,
+            "cachedTokens": 11008,
+            "reasoningTokens": 57,
+            "totalTokens": 20004
+          }
+        },
+        {
+          "attemptId": "c05068f2-6fc2-4fd4-b320-5a4e5702d97b",
+          "purpose": "baseline-1/worker",
+          "durationMs": 62292,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 136236,
+            "outputTokens": 2140,
+            "cachedTokens": 118272,
+            "reasoningTokens": 253,
+            "totalTokens": 138376
+          }
+        },
+        {
+          "attemptId": "923209f1-c651-4ef2-9e32-2ddcd83239d8",
+          "purpose": "baseline-1/critic",
+          "durationMs": 53846,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 84637,
+            "outputTokens": 2306,
+            "cachedTokens": 69632,
+            "reasoningTokens": 517,
+            "totalTokens": 86943
+          }
+        },
+        {
+          "attemptId": "024246de-7c69-4a7e-9e3c-68ecce6232ba",
+          "purpose": "baseline-1/adjudicator",
+          "durationMs": 38559,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 62054,
+            "outputTokens": 1503,
+            "cachedTokens": 50432,
+            "reasoningTokens": 219,
+            "totalTokens": 63557
+          }
+        },
+        {
+          "attemptId": "fdd676c3-902d-4ca2-8b31-6a93216e596f",
+          "purpose": "candidate-2/worker",
+          "durationMs": 40013,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 72084,
+            "outputTokens": 1344,
+            "cachedTokens": 61440,
+            "reasoningTokens": 136,
+            "totalTokens": 73428
+          }
+        },
+        {
+          "attemptId": "caaf9524-4041-4d2c-9819-1f213a9b4aac",
+          "purpose": "candidate-2/worker",
+          "durationMs": 82883,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 170863,
+            "outputTokens": 2525,
+            "cachedTokens": 152576,
+            "reasoningTokens": 324,
+            "totalTokens": 173388
+          }
+        },
+        {
+          "attemptId": "8bd60f88-f540-4e9f-803b-537d1d93d3f1",
+          "purpose": "candidate-2/critic",
+          "durationMs": 22330,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 17090,
+            "outputTokens": 1015,
+            "cachedTokens": 9984,
+            "reasoningTokens": 170,
+            "totalTokens": 18105
+          }
+        },
+        {
+          "attemptId": "20fbf8b7-5b1e-4865-8f9b-828bf4da4ef4",
+          "purpose": "candidate-2/critic",
+          "durationMs": 24720,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 17120,
+            "outputTokens": 1162,
+            "cachedTokens": 5888,
+            "reasoningTokens": 261,
+            "totalTokens": 18282
+          }
+        },
+        {
+          "attemptId": "99b07e25-813c-44a1-9a3d-3e208ed1ee57",
+          "purpose": "candidate-2/worker",
+          "durationMs": 45936,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 121194,
+            "outputTokens": 1549,
+            "cachedTokens": 102912,
+            "reasoningTokens": 308,
+            "totalTokens": 122743
+          }
+        },
+        {
+          "attemptId": "eb02d41c-9f72-47e5-9af3-2e08f1b50f28",
+          "purpose": "candidate-2/adjudicator",
+          "durationMs": 21137,
+          "outcome": "returned",
+          "usage": {
+            "inputTokens": 17121,
+            "outputTokens": 943,
+            "cachedTokens": 12032,
+            "reasoningTokens": 160,
+            "totalTokens": 18064
+          }
+        }
+      ]
+    },
+    "methodology": "Same frozen two-module task, model, low reasoning effort and fresh Codex CLI transport. Baseline pre-review/meta/worker/post-review; candidate two scoped workers, independent reviews, Git integration and final review. Explicit DAG isolates execution effects from planning variance. Oracle remains outside workspaces. Two paired trials cannot establish general performance superiority.",
+    "evidenceReview": {
+      "originalReportSha256": "4fedb88b0b1e957af5ac0fbf83cea347eccdbaadaa4a2913d7c7d285abf3a710",
+      "redactions": [
+        "Local workspace paths and subprocess command lines removed; aggregate measurements preserved"
+      ],
+      "baselineHarnessCommit": "0b1457f37193b988e3aae79ca793357d31969ae5",
+      "candidateHarnessCommit": "8d6fb34aca21035a7609c0eaaabb7e66016e410f",
+      "changesDuringCampaign": "Worker goals were scoped before candidate invocation; task functions and external oracle were unchanged. The first baseline began under the previous harness digest. This mixed campaign is failed evidence and cannot satisfy release gates.",
+      "diagnosis": "The left reviewer scored 55.5 because only syntax and whitespace verification was supplied. The right reviewer also found missing behavioral evidence. A repeat worker and boundary adjudication consumed the six-call limit before fan-in.",
+      "subsequentChange": "Frozen public behavioral tests added equally to both runtimes; verification digests changed. No subsequent real model calls were made.",
+      "decision": "Release blocked. Fifteen of twenty-four calls consumed; nine remaining cannot complete a fresh eighteen-call mock-estimated comparison, even before conformance checks or retries. Do not reset the allowance."
+    }
+  }
+}

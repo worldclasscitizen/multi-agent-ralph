@@ -1,34 +1,24 @@
 # Install and first run
 
-Ralph runs from a normal terminal. An AI chat product is an optional input surface, not the control plane.
+Build the reviewed v0.3 checkout before using its graph commands:
 
 ```bash
-npm install -g @worldclasscitizen/ralph@beta
+npm ci
+npm run build
+npm link
 cd /absolute/path/to/a/clean/git-project
 ralph init
 ralph doctor
-ralph run "Improve the login flow and prove the result with tests"
+ralph plan "Implement a bounded change and verify it" --json
 ```
 
-Before code changes, review the generated contract, risk tier, deterministic checks, and selected Worker path. Ralph starts only after explicit approval.
-
-Use `ralph dashboard --open` for the local UI or `ralph status --watch` and `ralph logs --follow` in terminal-only environments.
-
-## Customize without writing six chains
-
-Initialization generates all task and role routes. Most users do not need to edit them. Advanced users can restrict the candidate portfolio, fix an order, or hard-pin one route:
+Review the contract, graph, paths, verification commands, provider candidates and budget. Use the returned run ID:
 
 ```bash
-ralph config route set backend_core --mode adaptive \
-  --candidate 'openai:codex-login=gpt-5.6-sol@xhigh' \
-  --candidate 'anthropic:claude-login=claude-opus-5@max'
-
-ralph config route pin worker \
-  --connection openai:codex-login \
-  --model gpt-5.6-sol \
-  --effort xhigh
-
-ralph config route unpin worker
+ralph run --plan <run-id> --yes
+ralph dashboard --open
 ```
 
-API keys stay in the operating-system credential store or the provider environment variable. They are never stored in route configuration.
+Do not save exported plans inside the consumer working tree. For host-controlled approval, deliver reviewed JSON over stdin to `ralph run --plan-stdin --yes`. The local runner continues independently of the observing CLI. `ralph stop` requests interruption and `ralph resume` checks the saved execution before continuing.
+
+See [provider configuration](providers/index.md), [CLI options](reference/cli.md), and [migration](migration/v0.3.md). This checkout is beta; npm stable release and live conformance are governed by [release readiness](project/v0.3-readiness.md).

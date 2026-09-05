@@ -4,244 +4,231 @@
 
 <div align="center">
   <h1>Ralph</h1>
-  <p><strong>Evidence-first, platform-neutral multi-agent orchestration for software delivery.</strong></p>
+  <p><strong>Evidence-first, graph-native multi-agent orchestration for software delivery.</strong></p>
   <p>
-    Turn one natural-language request into an approved task contract, route each role to the right model,
-    verify every iteration, and preserve every outcome as recoverable Git history.
+    Turn one natural-language request into an approved execution graph, run independent work in isolated Ralph Loops,
+    and bring the results together with verification evidence and recoverable Git history.
   </p>
   <p>
     <a href="#quick-start"><strong>Quick start</strong></a> ·
     <a href="#how-ralph-works">How it works</a> ·
     <a href="#command-reference">Commands</a> ·
     <a href="#ralph-control-center">Dashboard</a> ·
-    <a href="./docs/ARCHITECTURE.md">Architecture</a>
+    <a href="./docs/architecture/index.md">Architecture</a>
   </p>
   <p>
-    <img alt="Release" src="https://img.shields.io/badge/release-v0.2.0--beta.0-f59e0b?style=flat-square">
-    <a href="https://github.com/worldclasscitizen/multi-agent-ralph/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/worldclasscitizen/multi-agent-ralph/ci.yml?branch=main&style=flat-square&label=CI"></a>
-    <img alt="Node.js 22 or newer" src="https://img.shields.io/badge/Node.js-%3E%3D22-339933?style=flat-square&logo=nodedotjs&logoColor=white">
+    <img alt="Target version: 0.3.0 preview" src="https://img.shields.io/badge/target-v0.3.0_preview-f59e0b?style=flat-square">
+    <a href="https://github.com/worldclasscitizen/Ralph/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/worldclasscitizen/Ralph/ci.yml?branch=feat%2Fgraph-native-v0.3&style=flat-square&label=CI"></a>
+    <img alt="Node.js 22 or 24" src="https://img.shields.io/badge/Node.js-22%20%7C%2024-339933?style=flat-square&logo=nodedotjs&logoColor=white">
     <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.9-3178C6?style=flat-square&logo=typescript&logoColor=white">
     <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-2563eb?style=flat-square"></a>
   </p>
 </div>
 
 > [!IMPORTANT]
-> **Beta release:** `v0.2.0-beta.0` is published under the npm `beta` dist-tag. It is an actively tested preview, not yet a production-stable replacement for the legacy runtime.
+> **0.3.0 preview:** this branch contains the graph-native runtime under release verification. The npm `beta` tag still points to `0.2.0-beta.0`; `0.3.0` has not been published. Use the source installation below to try the graph commands. Stable promotion depends on the [release gates](./docs/project/v0.3-readiness.md).
 
 ## Why Ralph?
 
-Most autonomous coding loops repeatedly call one model and hope the next attempt is better. Ralph makes the loop explicit, inspectable, and recoverable.
+An autonomous coding task needs more than another model call. It needs a clear scope, dependable inputs, reproducible checks, and a way to recover when work stops. Ralph connects those pieces in one inspectable run.
 
 | Typical failure | Ralph's answer |
 | :--- | :--- |
-| A lightweight model implicitly directs every stronger model | A deterministic TypeScript state machine owns orchestration; models only perform bounded roles. |
-| The agent edits code before the task is understood | A `TaskContract`, verification plan, and model route must be shown and explicitly approved first. |
-| Retries repeat the same mistake | The Meta-Prompter converts Critic and verifier evidence into the next bounded instruction. |
-| A self-evaluating Worker passes its own work | Deterministic checks and a stateless Post-Critic evaluate the result; another provider is preferred. |
-| A runaway loop leaves an unrecoverable working tree | Every completed, failed, or interrupted iteration attempts a local Git checkpoint. |
-| Progress lives only in an LLM context window | Files, verifier output, append-only events, and Git history are the source of truth. |
-| Model routing requires hand-written chains | `ralph init` detects usable connections and builds task-aware fallback chains from a signed catalog. |
-| A static chain cannot react to risk or failed attempts | The Online Router proposes a route at recorded runtime boundaries, while local policy keeps quality and operator constraints authoritative. |
-| Operators can only stare at a terminal marked “running” | The local Control Center streams node state, evidence, Git changes, usage, and safe-stop controls. |
+| The agent edits code before the task is understood | Review and approve the contract, graph, verification plan, providers and budget first. |
+| Independent tasks wait for one long loop | A dependency-aware scheduler starts ready nodes with bounded concurrency. |
+| Parallel agents overwrite one another's changes | Writing workers use separate Git worktrees; overlapping write scopes are ordered. |
+| Retries repeat the same mistake | Each Ralph Loop carries verifier findings and unresolved criteria into its next iteration. |
+| A worker declares its own output complete | Local checks and an independent critic evaluate it; final integration is verified again. |
+| A process stops and nobody knows what ran | Durable events, artifacts and commit receipts preserve known outcomes; uncertainty requires inspection. |
+| One provider becomes unavailable | Bounded retries and approved alternatives handle transient errors; Hard Pins remain fixed. |
+| Progress lives only in a model's context window | Files, verifier evidence, events and Git state remain available outside the session. |
+| A terminal only says “running” | The Control Center shows the graph, iterations, model choices, changes and usage. |
 
 ## What makes it different?
 
 <table>
   <tr>
-    <td align="left" width="33%"><strong>Contract before code</strong><br>Ralph converts intent into scope, exclusions, acceptance criteria, artifacts, and verifier commands before any write is allowed.</td>
-    <td align="center" width="34%"><strong>Evidence before confidence</strong><br>Critics return anchored rubric evidence. Ralph computes scores and hard gates locally instead of trusting a free-form verdict.</td>
-    <td align="right" width="33%"><strong>Git before regret</strong><br>Iteration checkpoints, safe interruption, and explicit recovery keep autonomous work reversible without automatic rollback or push.</td>
+    <td align="left" width="33%"><strong>Contract before code</strong><br>Scope, completion criteria, checks, model candidates and execution limits are approved together.</td>
+    <td align="center" width="34%"><strong>Evidence before confidence</strong><br>Workers improve locally; deterministic checks and independent assessment decide whether results qualify.</td>
+    <td align="right" width="33%"><strong>Git before regret</strong><br>Isolated workspaces, retained checkpoints and guarded delivery protect work across interruptions.</td>
   </tr>
 </table>
 
-- **Platform-neutral control plane:** run Ralph from a normal terminal, IDE terminal, tmux, cmux, or orca. Optional agent Skills call the same CLI.
-- **Multi-provider by design:** use stored Codex, Claude Code, Antigravity, or Gemini CLI logins alongside API connections.
-- **Your subscriptions as a model portfolio:** connect as many supported subscriptions and API accounts as you own, then let each task route within the exact candidate pool you authorize.
-- **Quality-first triple optimization:** Ralph maximizes qualified quality first, then prefers faster and cheaper routes only when quality remains equivalent.
-- **Role-aware orchestration:** Contract Planner, Critic, Meta-Prompter, Worker, Verifier, and Adjudicator are routed independently.
-- **Task-aware routing:** planning, visual frontend, backend, TDD/debugging, static review, and delivery evidence receive different model chains.
-- **Bounded tools:** API Workers can inspect and edit project files, inspect Git, and run registered verifiers—but cannot push, deploy, or execute arbitrary shell commands.
-- **Local observability:** project evidence stays under Git's internal Ralph path and is shown through CLI or the local dashboard.
-- **Honest capacity reporting:** exact official subscription percentages or API balances are shown only when a structured provider interface exists.
+- **One run, many local loops:** the DAG coordinates dependencies while each worker retains the iterative Ralph Loop.
+- **The right execution size:** read-only answers need no worker graph; small changes use one worker; separable work can use parallel branches.
+- **Platform-neutral control:** terminals and optional host Skills use the same CLI and approval contracts.
+- **Your configured model portfolio:** CLI subscriptions and API connections coexist with separate identities and limits.
+- **Quality-first routing:** approved capabilities and pins come first; comparable evidence informs later choices. Unmeasured quality stays unrated.
+- **Recoverable revisions:** repair creates new node generations without rewriting earlier execution history.
+- **Honest observability:** unknown usage stays unknown; work summaries and evidence do not expose hidden reasoning.
 
 ## Quick start
 
 ### Requirements
 
-- Node.js 22 or newer
-- Git
-- A Git repository with a clean working tree
-- At least one supported authenticated CLI or API connection
+- Node.js 22 or 24
+- Git and a clean Git working tree
+- At least one configured, authenticated provider connection
 
 ### Install from npm
 
+**After 0.3.0 is published**, install the exact stable version with:
+
 ```bash
-npm install -g @worldclasscitizen/ralph@beta
+npm install -g @worldclasscitizen/ralph@0.3.0
 ralph --version
 ```
 
-Run once without a global install:
-
-```bash
-npx @worldclasscitizen/ralph@beta run --project /absolute/path/to/project "Improve login accessibility and add tests"
-```
+Until publication, use the source installation below. The existing npm beta contains the earlier loop runtime and does not provide these graph commands.
 
 ### Install from source
 
 ```bash
-git clone https://github.com/worldclasscitizen/multi-agent-ralph.git
-cd ralph
+git clone --branch feat/graph-native-v0.3 https://github.com/worldclasscitizen/Ralph.git
+cd Ralph
 npm ci
 npm run build
-npm install -g .
+npm link
 ralph --version
 ```
-
-For active development, `npm link` is also supported.
 
 ### Initialize and run
 
 ```bash
-cd /absolute/path/to/git-project
+cd /absolute/path/to/a/clean/git-project
 ralph init
 ralph doctor
-ralph run "Improve login accessibility and add tests"
+ralph plan "Improve login accessibility and add tests" --json
 ```
 
-Ralph will:
-
-1. Detect available providers and authentication.
-2. Generate task and role fallback routes without asking an LLM to rank models.
-3. Draft a structured task contract from your request.
-4. Show the scope, exclusions, checks, execution profile, and selected route.
-5. Wait for explicit approval.
-6. Execute and evaluate the loop only after approval.
-
-Nothing is written outside a Git project. From another directory, pass an absolute path:
+Ralph collects context, resolves configured providers, and saves a contract and graph. Review the paths, acceptance criteria, verifier commands, models and budget. Then use the returned `runId` to approve that exact plan:
 
 ```bash
-ralph run --project /absolute/path/to/project "Refactor the cache layer"
+ralph run --plan <run-id> --yes
+ralph graph show <run-id> --format mermaid
+ralph dashboard --open
 ```
+
+For an interactive flow, `ralph run "your request"` connects planning and approval. An unseen request with `--yes` is rejected. Keep exported JSON outside the target working tree; reviewed plans can also be passed through `ralph run --plan-stdin --yes`.
+
+From another directory, select the project explicitly:
+
+```bash
+ralph plan --project /absolute/path/to/project "Refactor the cache layer" --json
+```
+
+See the [first-run guide](./docs/getting-started.md).
 
 ## How Ralph works
 
 ```mermaid
 flowchart LR
-    A[Natural-language request] --> B[Contract Planner]
-    B --> BC[Independent Contract Critic]
-    BC --> C{Operator approval}
-    C -- Decline --> Z[No code changes]
-    C -- Approve --> D[Pre-Critic]
-    D --> R[Online Router]
-    R --> P[EvidencePacket]
-    P --> E[Meta-Prompter]
-    E --> F[Worker]
-    F --> G[Risk-tier Verifier]
-    G --> H[Post-Critic]
-    H --> I{Boundary case?}
-    I -- Yes --> J[Independent Adjudicator]
-    I -- No --> K[Local verdict]
-    J --> K
-    K --> L[Git checkpoint]
-    L --> M{Pass or retry?}
-    M -- Pass --> N[Complete]
-    M -- Retry --> D
-    M -- Operator needed --> O[Needs operator]
+    A[Request and context] --> B[Contract and graph planning]
+    B --> Q{Clarification needed?}
+    Q -- Yes --> I[Save questions and await input]
+    Q -- No --> C{Exact plan approval}
+    C -- Approve --> S[Run Supervisor]
+    S --> W1[Worker A: Ralph Loop]
+    S --> W2[Worker B: Ralph Loop]
+    W1 --> M[Isolated integration]
+    W2 --> M
+    M --> V[Checks and independent critic]
+    V -- Pass --> D[Guarded Git delivery]
+    V -- Repair needed --> R[New graph revision]
 ```
 
-The TypeScript state machine—not Gemini Flash or any other model—is the operator. The Meta-Prompter may refine the next instruction from evidence, but it cannot expand the approved contract. Router, Meta-Prompter, Critics, and Reviewers are stateless. Workers rehydrate from an EvidencePacket by default; exact-session continuation is allowed only when the same attempt is measurably improving and structured context usage proves it remains below 40%.
+TypeScript enforces graph validity, scope, scheduling, budgets and completion. Models propose work and assess evidence. Every revision remains acyclic: iterations happen inside a worker, and repair creates a new revision while preserving prior results.
 
-“Online” means runtime-aware, not Internet-controlled. The Router model may propose only an approved candidate. Local TypeScript policy applies Hard Pins and fixed routes first, rejects candidates outside the authorized portfolio, refuses suggestions more than two catalog quality points below the best candidate, and permits one adjacent Worker-session continuation only when measurable improvement and context telemetry make it safe. If the Router returns an invalid result or encounters a retryable failure, Ralph uses its deterministic quality-first decision instead.
+### From Loop to Graph
+
+| Concern | v0.2 Loop | v0.3 Graph |
+| :--- | :--- | :--- |
+| Execution | Sequential role pipeline | Dependency-ready nodes containing local loops |
+| Workspace | Shared checkout | Separate worktree per writing worker |
+| History | Loop iterations | Run → revision → node generation → iteration → attempt |
+| Recovery | Iteration checkpoints | Events, evidence, immutable inputs and commit receipts |
+| Integration | Worker checkpoints | Separate integration, final validation and guarded delivery |
 
 ### Evaluation and stopping
 
-- Common rubric: 40 points
-- Task-specific rubric: 60 points
-- Default pass threshold: 85
-- Success requires both deterministic verifier success and Post-Critic acceptance
-- Boundary adjudication runs only for scores from 80 to 90 or unclear hard gates
-- Maximum iterations: 6
-- A first-iteration pass ends immediately; six iterations are not mandatory
-- Repeated identical failures or stagnant scores transition to `needs_operator`
+- Workers act, run deterministic verifiers, receive independent assessment, then complete or improve.
+- The rubric combines 40 common points and 60 task-specific points; the default passing threshold is 85.
+- Boundary adjudication handles scores from 80 to 90 or unclear hard gates.
+- Each logical worker has at most six iterations, including later generations. A first pass ends immediately.
+- Repeated failures, stagnant progress and uncertain evidence stop work with an explanation.
+- A successful provider exit never suffices; the final run completes only after verified result delivery.
 
-Critics return item-level anchors and evidence. Ralph calculates totals, hard gates, and the final state locally. See [the architecture guide](./docs/ARCHITECTURE.md) for session and evidence rules.
+Defaults allow four workers, one active invocation per connection, 32 nodes per revision, eight revisions, two integration repairs, 256 attempts and two active hours. The approved plan exposes these limits. Waiting for user input is excluded from active time.
 
 ### Risk-tier verification
 
-| Tier | Typical scope | Additional protection |
+| Tier | Typical scope | Protection |
 | :--- | :--- | :--- |
-| `T0` | Documentation and low-risk planning | Artifact, scope, and independent evidence checks |
-| `T1` | Normal code changes | Project tests, lint, types, build, and configured coverage ratchet |
-| `T2` | Public API, schema, or large refactor | Disposable-worktree re-verification and conditional mutation bite |
-| `T3` | Authentication, payment, permissions, migration, deletion, or secrets | All T2 checks plus mandatory final operator confirmation |
+| `T0` | Documentation and low-risk planning | Artifact, scope and evidence checks |
+| `T1` | Normal code changes | Registered project tests, lint, types and build |
+| `T2` | Public API, schema or large refactor | Isolated re-verification and conditional mutation checks |
+| `T3` | Authentication, payment, permissions, migration or secrets | T2 checks plus mandatory final confirmation |
 
-Strong gates are local checks rather than model opinions. Coverage Ratchet prevents a stored coverage baseline from decreasing, Frozen Invariants require explicit approval for protected contracts or schemas, Test Tampering detects newly added validation bypasses, and Mutation Bite confirms that changed tests fail when a changed implementation is deliberately removed in an isolated worktree.
+Coverage baselines, protected invariants and test-tampering checks are enforced locally. Verifiers should demonstrate the requested behavior, not just syntax. [Architecture](./docs/architecture/index.md)
 
 ## Task-aware routing
 
 | Task type | Optimized for |
 | :--- | :--- |
-| `planning_architecture` | Requirements, trade-offs, system boundaries, and architecture decisions |
-| `frontend_visual` | UI implementation, multimodal inspection, responsive behavior, and accessibility |
-| `backend_core` | APIs, data models, security boundaries, and core business logic |
-| `tdd_debugging` | Reproduction, tests, root-cause isolation, and regression prevention |
-| `static_review` | Lint, type analysis, security review, and maintainability findings |
-| `delivery_evidence` | Screenshots, technical evidence, impact narratives, and submission readiness |
+| `planning_architecture` | Requirements, trade-offs and system boundaries |
+| `frontend_visual` | UI, responsive behavior and accessibility |
+| `backend_core` | APIs, data models and business logic |
+| `tdd_debugging` | Reproduction, root causes and regression tests |
+| `static_review` | Types, security and maintainability |
+| `delivery_evidence` | Technical evidence and delivery readiness |
 
 ### Execution profiles
 
-| Profile | Priority | Typical use |
-| :--- | :--- | :--- |
-| `balanced` | Maximize qualified quality, then balance reliability, diversity, time, and cost | Default for most work |
-| `quality` | Maximize verified task fit and reliability regardless of extra cost | Architecture, risky refactors, final review |
-| `fast` | Preserve required quality while preferring lower latency among equivalent candidates | Time-boxed work and quick iterations |
-| `budget` | Preserve required quality while preferring lower cost among equivalent candidates | Large, low-risk backlogs |
-
-If a request says “avoid heavy models because time is short,” the Contract Planner records `executionProfile: fast`. Ralph recalculates the route before approval; a model never chooses an arbitrary `fallback_2` by itself.
-
-Inspect or override routing:
+| Profile | Priority among qualified candidates |
+| :--- | :--- |
+| `balanced` | Balance reliability, time and available cost evidence |
+| `quality` | Prefer verified task fit and reliability |
+| `fast` | Prefer lower latency when quality is equivalent |
+| `budget` | Prefer lower known cost when quality is equivalent |
 
 ```bash
 ralph config pipelines
 ralph config explain --profile quality
 ralph config preset fast
-ralph run --model gpt-5.6-sol "Review the authentication boundary"
-
-ralph config route set backend_core --mode adaptive \
-  --candidate 'openai:codex-login=gpt-5.6-sol@xhigh' \
-  --candidate 'anthropic:claude-login=claude-opus-5@max'
-ralph config route pin worker --connection openai:codex-login --model gpt-5.6-sol --effort xhigh
-ralph config route unpin worker
+ralph config route list
 ```
 
-Priority is deterministic:
-
-```text
-explicit --profile / --model
-→ approved TaskContract
-→ project-local hidden override
-→ generated balanced preset
-```
+Approved capabilities and availability are checked before assignment. Fixed routes and Hard Pins take priority. Comparable local completion samples require the same task category and verification protocol, with at least 20 observations. Different external benchmark families are not added into one score. [Routing evidence](./docs/providers/index.md)
 
 ## Providers and authentication
 
-| Connection family | Adapters | Authentication |
+| Connection family | Examples | Authentication |
 | :--- | :--- | :--- |
-| Built-in CLI | Codex, Claude Code, Antigravity, Gemini CLI | Reuses that CLI's stored login |
-| Native API | OpenAI, Anthropic, Google Gemini | OS credential store first; environment variable fallback |
-| Compatible API | DeepSeek, Z.AI General, Z.AI Coding Plan, OpenAI-compatible | OS credential store or provider API-key environment variable |
-| Custom process | Any process implementing Ralph's JSON/NDJSON protocol | Defined by the process adapter |
+| Built-in CLI | Codex, Claude Code, Gemini CLI; experimental Antigravity | That CLI's stored login |
+| Native API | OpenAI, Anthropic, Google Gemini | Credential reference or environment variable |
+| Compatible API | DeepSeek, GLM, configured compatible endpoints | Provider API-key reference |
+| Custom process | Ralph JSON/NDJSON protocol | Defined by the process adapter |
 
-Built-in login and API-key connections are separate identities. For example, `openai:codex-login` and `openai:api` may both exist without silently overriding each other.
+CLI login and API connections remain separate. Configure only what you use: DeepSeek and GLM can supply planning, work and evaluation without a Codex login. Credential storage depends on the operating system; Windows currently uses environment variables.
 
 ```bash
 ralph providers detect
+ralph providers list
 ralph auth status
-ralph auth login openai:codex-login
-printf '%s' "$DEEPSEEK_API_KEY" | ralph auth add deepseek:api --key-stdin
+ralph config refresh
 ```
 
-Authentication failures, policy refusals, and invalid requests require operator action. Ralph only retries or falls back on transient failures such as rate limits, quota exhaustion, timeouts, server errors, empty output, or schema-invalid output. See [Provider support](./docs/PROVIDERS.md) for exact adapters and capacity behavior.
+<!-- provider-verification:start -->
+| Connection / model | Support | Verified environment |
+|---|---|---|
+| Codex | compatible | Live release verification pending |
+| Claude Code, Gemini CLI | compatible | Protocol tests; no current live verification |
+| OpenAI, Anthropic, Gemini, DeepSeek, GLM APIs | compatible | Protocol tests; no current live verification |
+| Antigravity | experimental | Requires a working automation interface |
+| Other compatible endpoints | compatible | No live verification |
+<!-- provider-verification:end -->
+
+Installation and login are distinct from verified behavior. Support records identify the actual model, CLI version, environment and verification date; mock tests do not establish live support. [Configuration and support evidence](./docs/providers/index.md)
 
 ## Command reference
 
@@ -249,60 +236,53 @@ Authentication failures, policy refusals, and invalid requests require operator 
 
 | Command | Purpose |
 | :--- | :--- |
-| `ralph init [--preset <name>]` | Register the project, detect connections, and generate default routes |
-| `ralph draft "<request>"` | Generate a task contract without executing it |
-| `ralph run "<request>"` | Draft, display, approve, and execute a task |
-| <code>ralph status [--watch&#124;--json]</code> | Inspect the current or most recent run |
-| `ralph stop [--force]` | Request a safe stop or force process interruption |
-| `ralph resume [run-id]` | Continue an interrupted, failed, or operator-blocked run |
-| `ralph recover [run-id]` | Keep, checkpoint, or restore partial work explicitly |
+| `ralph init` | Register the project and discover connections |
+| `ralph plan "request" --json` | Save a reviewable contract and graph |
+| `ralph run --plan <run-id> --yes` | Approve and execute the reviewed plan |
+| `ralph status <run-id> --watch` | Follow the run state |
+| `ralph stop <run-id>` | Request controlled interruption |
+| `ralph resume <run-id>` | Reconcile saved state and continue eligible work |
+| `ralph respond <run-id> --request <question-id> --stdin` | Answer a saved clarification request |
 
 ### Diagnosis and configuration
 
 | Command | Purpose |
 | :--- | :--- |
-| <code>ralph doctor [--fix&#124;--offline&#124;--json]</code> | Diagnose Node, Git, lock, auth, catalog, and route status |
-| <code>ralph config show&#124;preset&#124;pipelines&#124;explain&#124;export&#124;import</code> | Inspect or manage project routing configuration |
-| <code>ralph config route list&#124;set&#124;pin&#124;unpin&#124;reset&#124;explain</code> | Manage adaptive candidates, fixed fallback order, and Hard Pins |
-| <code>ralph config coverage show&#124;capture&#124;reset</code> | Inspect or update the project coverage ratchet baseline |
-| <code>ralph config invariant list&#124;add&#124;remove</code> | Manage files or patterns that require explicit change approval |
-| <code>ralph providers list&#124;detect</code> | List configured or detected provider connections |
-| <code>ralph auth status&#124;login&#124;add&#124;remove</code> | Manage built-in login and API credentials |
-| <code>ralph catalog status&#124;diff&#124;update</code> | Inspect or update the signed model catalog |
-| <code>ralph integrations install&#124;uninstall&#124;status</code> | Manage optional AI-platform Skills |
+| `ralph doctor` | Diagnose Git, authentication and routing |
+| `ralph config explain` | Explain routes and policies |
+| `ralph providers list` | Inspect connections and verification scope |
+| `ralph auth status` | Inspect authentication separately from installation |
+| `ralph catalog status` | Inspect the signed catalog |
+| `ralph inspect-interruption <run-id> --json` | Inspect a retained worker before reconciliation |
 
 ### Evidence and observability
 
 | Command | Purpose |
 | :--- | :--- |
-| <code>ralph dashboard [--open&#124;--all]</code> | Start the local Control Center |
-| <code>ralph dashboard status&#124;stop</code> | Inspect or stop the dashboard server |
-| `ralph logs --follow` | Stream operator-safe event summaries |
-| `ralph usage` | Show Ralph token usage by provider and model |
-| `ralph capacity [--refresh]` | Show exact provider capacity when officially available |
-| <code>ralph history list&#124;delete&#124;clear</code> | Inspect or remove completed local run evidence |
-| <code>ralph show contract&#124;progress&#124;guardrails</code> | Read the current contract, event ledger, or learned safeguards |
-| <code>ralph benchmark run&#124;compare&#124;report&#124;baseline set&#124;calibrate</code> | Measure qualified quality, elapsed time, token use, official cost evidence, and sampled human calibration |
-| `ralph migrate [--cleanup]` | Import the legacy Bash layout; remove it only with explicit approval |
+| `ralph graph show <run-id> --format mermaid` | View the compiled graph |
+| `ralph explain <run-id> --node <node-id>` | Inspect node results and events |
+| `ralph logs <run-id> --follow` | Follow execution events |
+| `ralph usage` | Inspect recorded provider/model usage |
+| `ralph dashboard --open` | Open the local Control Center |
+| `ralph migrate --to 0.3 --dry-run` | Preview migration of older records |
+
+See the [complete CLI reference](./docs/reference/cli.md) and [interruption recovery procedure](./docs/architecture/recovery.md).
 
 ## Structured automation
 
-Skills and external tools can use a stable machine-readable boundary:
+Hosts use the same saved-plan and event boundary as the terminal:
 
 ```bash
-ralph draft --stdin --json
-ralph run --contract-stdin --events ndjson
+ralph plan "Implement a bounded change and verify it" --json
+ralph run --plan-stdin --yes --events ndjson
 ralph status --json
 ```
 
-- JSON or NDJSON is written to stdout.
-- Human guidance and errors are written to stderr.
-- Approved contracts are protected by a content hash.
-- The Ralph runner and evidence can outlive the host AI session.
+Pass the reviewed JSON to the second command's stdin. JSON/NDJSON goes to stdout; human guidance goes to stderr. Required input returns exit code 10 and a run ID. Questions persist across processes; elapsed time never implies consent. Host context can add information but cannot expand the approval scope.
 
 ## Optional AI-platform Skills
 
-The terminal command is canonical. Skills are convenience entry points and do not contain their own orchestration loop.
+The terminal command is canonical. Host Skills invoke the same CLI and do not implement a separate execution loop.
 
 ```bash
 ralph integrations install
@@ -313,42 +293,35 @@ ralph integrations status
 | :--- | :--- |
 | Codex | `$ralph Improve the login flow` |
 | Claude Code | `/ralph Improve the login flow` |
-| Antigravity | `/ralph Improve the login flow` |
-| Gemini CLI | Use the installed Ralph Skill through Gemini CLI's Skill interface |
-| Terminal, IDE terminal, cmux, tmux, orca | `ralph run "Improve the login flow"` |
-
-Typing `ralph run ...` into an AI chat may be treated as ordinary prose. Run it in a real shell unless the host integration is installed.
+| Antigravity | `/ralph Improve the login flow`, where supported |
+| Gemini CLI | The installed Ralph Skill interface |
+| Terminal or IDE terminal | `ralph run "Improve the login flow"` |
 
 ## Git-backed state and safety
 
-Ralph does not add `.ralph`, `.antigravity`, `PROMPT.md`, or personal JSON files to a consumer project's root. Project state lives under the worktree-aware path returned by:
-
-```bash
-git rev-parse --git-path ralph
-```
+State stays under `git rev-parse --git-path ralph`. Worker worktrees receive that resolved path; they do not create competing run stores.
 
 ```text
 ralph/
   config.json
-  contracts/
-  runs/
-  sessions/
-  progress.jsonl
-  guardrails.jsonl
-  guardrails.md
   locks/
-  dashboard/
+  runs/<run-id>/
+    plan.json
+    context.json
+    events.jsonl
+    snapshot.json
+    nodes/<node-id>/<generation>/
+    artifacts/
+    workspaces/
+    integration/delivery.json
 ```
 
-Safety defaults:
-
-- A run starts only from a clean working tree.
-- Every iteration exit—pass, failure, or interruption—attempts a local commit.
-- Commit metadata records run ID, task type, iteration, exit codes, score, and verdict.
-- Secret paths, secret-like content, and unresolved conflicts block checkpoint creation.
-- Ralph never pushes, deploys, or rolls back automatically.
-- First `Ctrl+C` requests a safe stop; a second press within three seconds forces interruption.
-- Recovery always asks whether to keep, checkpoint, or restore partial work.
+- Artifacts and sequence-numbered events preserve the input and evidence behind each result.
+- Replay reconstructs state without invoking models or repeating Git operations.
+- Final validation runs in an integration worktree; delivery rechecks the original branch, HEAD and user files.
+- User changes preserve the validated result on `ralph/result-<run-id>` and pause delivery.
+- Unconfirmed process outcomes require inspection before another worker can start.
+- Worktrees isolate changes but are not security sandboxes. Consumer runs do not automatically push, deploy or roll back.
 
 ## Ralph Control Center
 
@@ -356,49 +329,48 @@ Safety defaults:
 ralph dashboard --open
 ```
 
-The dashboard binds to `127.0.0.1` and shows only local evidence. By default it displays the current project; `--all` displays other locally registered Ralph projects. It never collects teammates' runs.
+![Ralph graph dashboard captured from a real mock-provider run](./docs/public/graph-dashboard.png)
 
-The Control Center provides:
+*Actual packaged dashboard capture using a mock-provider fixture; this is not evidence of a live-provider run.*
 
-- live node state over Server-Sent Events
-- expandable evidence summaries without exposing private chain-of-thought
-- iteration score, verifier results, and checkpoint state
-- color-coded Git status and line additions/deletions
-- model, provider, reasoning effort, and token usage
-- exact provider capacity when a structured official source exists
-- operator notes, safe stop, and history editing
-- responsive layouts that preserve workspace, branch, start, and end timestamps
+The Control Center binds to `127.0.0.1` and ships with the npm package. No separate frontend server is needed.
 
-See the [Control Center guide](./docs/RALPH_CONTROL_CENTER.md).
+- One history entry per run, with graph revisions and node generations
+- Dependency canvas with model identity, state, duration and iteration counts
+- Inspector for work summaries, verifier evidence, file diffs and provider errors
+- Provider usage distributions and task-category counts, with unknown values left explicit
+- Sequence-based SSE reconnection and stable positions during status updates
+- Keyboard navigation, responsive inspection and virtualized long logs
+
+Control commands require a local token and matching Origin. Initial approval and clarification use the CLI or library. [Control Center guide](./docs/dashboard/index.md)
 
 ## Model catalog and fallback policy
 
-Ralph ships a bootstrap catalog and can refresh a small Ed25519-signed catalog from GitHub Releases.
+Ralph bundles an Ed25519-signed v2 catalog with a separate update/cache channel. The original v0.2 catalog and signature remain available for older clients.
 
-- No remote catalog request is made when the last check is under 24 hours old.
-- A 24-hour to 7-day cache starts immediately and refreshes in the background.
-- A cache older than 7 days gets one bounded refresh attempt while local checks continue.
-- Signature, schema, monotonic version, rollback, and size checks run before atomic replacement.
-- An approved run pins its catalog version, policy hash, and candidate portfolio. The Online Router may change the active Worker only at recorded decision boundaries.
-- Prompts, source code, and execution logs are never sent to the catalog service.
+- Official sources identify model entries; unsupported quality measurements stay `unrated`.
+- Signature, schema, version and expiry checks precede catalog replacement.
+- Approved runs freeze the catalog, candidate portfolio and execution policy.
+- The gateway permits two attempts per candidate and six per logical invocation, within the run budget.
+- Transient errors use bounded delay and approved alternatives. Authentication or policy failures pause; Hard Pins never silently rotate.
+- Unknown cancellation outcomes are inspected before retrying. Usage and cost retain their actual measurement level.
 
 ```bash
 ralph catalog status
 ralph catalog diff
 ralph catalog update
-ralph run --refresh-catalog "Review this release"
 ```
 
 ## Legacy migration
 
-The previous Bash/Python template is retained in `legacy/bash-template/` as a beta migration fixture and is excluded from the npm package.
+History, credential references, provider identities and Hard Pins are preserved. Preview the conversion before writing its manifest:
 
 ```bash
-ralph migrate
-ralph migrate --cleanup
+ralph migrate --to 0.3 --dry-run
+ralph migrate --to 0.3
 ```
 
-Migration imports compatible provider settings, contracts, progress, guardrails, runs, and sessions into Git-internal state. It never copies `.env` secrets and never deletes the source layout without explicit approval.
+Completed v0.2 runs remain read-only history. Interrupted work requires inspection and a new approved graph; old approvals and session IDs are not reused. Original records are not automatically deleted. The Bash-template importer remains a separate compatibility path. [Migration guide](./docs/migration/v0.3.md)
 
 ## Development
 
@@ -407,39 +379,40 @@ npm ci
 npm run build
 npm test
 npm run test:coverage
+npm run check:core
+npm run test:e2e
+npm run docs:check
 npm run docs:build
 npm run smoke
-npm audit --audit-level=moderate
 ```
 
-`npm run smoke` packs the real tarball, installs it into an empty Git repository, verifies the executable, and confirms Git-internal state initialization. The current honest baseline is 31 passing tests and 47.93% line coverage; CI enforces a non-decreasing initial floor while the roadmap raises it toward the v1 release gate.
+CI covers Windows, macOS and Linux with Node.js 22 and 24. One archive is installed across the matrix. Recovery checks terminate real fixture processes; browser cases cover 32 nodes, eight revisions and 100,000 log lines. Ten critical modules require at least 90% line and branch coverage.
 
-The CI matrix covers macOS, Ubuntu, and Windows on Node.js 22 and 24. Before `1.0.0`, the remaining release gates are live-provider integration validation, remote CI confirmation, migration cleanup validation, beta feedback, signed catalog release validation, and removal of the legacy Bash runtime.
+Mock tests make no paid model calls. Live release checks are opt-in and share a persistent 24-call, 30-active-minute allowance. Failures and cancellations count; reruns do not reset consumption. [Release verification](./docs/project/v0.3-readiness.md)
 
 ## Documentation
 
-| Document | Audience |
+| Document | Purpose |
 | :--- | :--- |
-| [Start here](./START_HERE.md) | New users and AI onboarding |
-| [Adoption guide](./docs/ADOPTION.md) | Adding Ralph to another project |
-| [Architecture](./docs/ARCHITECTURE.md) | State machine, sessions, evidence, and storage |
-| [Quality-first routing](./docs/concepts/quality-routing.md) | Adaptive candidates, fixed routes, Hard Pins, and optimization order |
-| [Verification](./docs/reliability/verification.md) | Risk tiers, mutation bite, coverage ratchet, and frozen invariants |
-| [Benchmarks](./docs/reliability/benchmarks.md) | 24-case live suite, qualified success, time, token, and cost comparisons |
-| [Roadmap](./docs/project/roadmap.md) | Quality, time, cost, coverage, and v1 release gates |
-| [Maturity matrix](./docs/project/maturity.md) | What is implemented, beta-limited, provider-dependent, or planned |
-| [Provider support](./docs/PROVIDERS.md) | Adapters, authentication, models, and capacity |
-| [Control Center](./docs/RALPH_CONTROL_CENTER.md) | Dashboard operation and local history |
-| [Release guide](./docs/RELEASING.md) | npm beta and signed catalog releases |
+| [Start here](./START_HERE.md) | User and AI onboarding |
+| [First run](./docs/getting-started.md) | Installation and reviewed-plan execution |
+| [Architecture](./docs/architecture/index.md) | Graph state, loops, scheduling and integration |
+| [Recovery](./docs/architecture/recovery.md) | Interrupted calls and guarded delivery |
+| [Providers](./docs/providers/index.md) | Connections, routing and support evidence |
+| [Control Center](./docs/dashboard/index.md) | Dashboard and event API |
+| [CLI reference](./docs/reference/cli.md) | Commands and structured input |
+| [Migration](./docs/migration/v0.3.md) | Preserving v0.2 history and settings |
+| [Release readiness](./docs/project/v0.3-readiness.md) | Measured checks and remaining gates |
+| [Release guide](./docs/RELEASING.md) | npm publication and GitHub Releases |
 
 ## Project status
 
-Ralph is in active beta development. The TypeScript runtime covers the primary orchestration path and passes local build, test, package, and smoke checks. It is not yet declared a complete production replacement for the legacy Bash runtime.
+Ralph 0.3.0 is in release verification. Stable publication requires a real request to generate a graph and complete worker execution, integration, validation and branch delivery. The [campaign review](./docs/project/release-campaign-2026-09-05.md) preserves earlier failed comparison attempts and the remaining test allowance. Historical comparisons are reference material; no general quality, speed or cost advantage is claimed.
 
-Please report reproducible defects through [GitHub Issues](https://github.com/worldclasscitizen/multi-agent-ralph/issues).
+Version 0.3.0 targets one local machine. Remote execution, arbitrary conditional graphs and guaranteed automatic recovery of every external action are outside its scope. Report reproducible defects through [GitHub Issues](https://github.com/worldclasscitizen/Ralph/issues).
 
 ## License
 
 [MIT](./LICENSE)
 
-Ralph follows the autonomous iteration pattern popularized by Geoffrey Huntley, extended here with explicit contracts, task-aware multi-provider routing, evidence-calibrated evaluation, local observability, and Git-backed recovery.
+Ralph builds on the autonomous iteration pattern popularized by Geoffrey Huntley, adding explicit contracts, graph orchestration, multi-provider routing, evidence-based evaluation and Git-backed recovery.

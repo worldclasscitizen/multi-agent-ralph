@@ -1,4 +1,5 @@
 coverage/
+.release/
 docs/.vitepress/cache/
 docs/.vitepress/dist/
 test-results/

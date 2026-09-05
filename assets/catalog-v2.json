@@ -1,0 +1,448 @@
+{
+  "schemaVersion": 2,
+  "keyId": "2dac79a372df181709c3d90522cf42740cd4599effd39f387234625965b3687e",
+  "version": 3,
+  "generatedAt": "2026-09-05T00:00:00.000Z",
+  "models": [
+    {
+      "provider": "openai",
+      "adapter": "codex-builtin",
+      "modelId": "gpt-5.6-luna",
+      "displayName": "gpt-5.6-luna",
+      "qualityTier": "unrated",
+      "checkedAt": "2026-09-05T00:00:00.000Z",
+      "expiresAt": "2027-03-05T00:00:00.000Z",
+      "capabilities": {
+        "reasoning": null,
+        "coding": null,
+        "structuredOutput": true,
+        "vision": false,
+        "toolUse": true,
+        "longContext": false
+      },
+      "taskAffinity": {
+        "planning_architecture": null,
+        "frontend_visual": null,
+        "backend_core": null,
+        "tdd_debugging": null,
+        "static_review": null,
+        "delivery_evidence": null
+      },
+      "costTier": null,
+      "latencyTier": null,
+      "reliabilityBaseline": null,
+      "supportedEfforts": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "recommendedEffort": "low",
+      "evidence": [
+        {
+          "source": "https://learn.chatgpt.com/docs/models",
+          "checkedAt": "2026-09-05"
+        }
+      ]
+    },
+    {
+      "provider": "openai",
+      "adapter": "codex-builtin",
+      "modelId": "gpt-5.6-terra",
+      "displayName": "gpt-5.6-terra",
+      "qualityTier": "unrated",
+      "checkedAt": "2026-09-05T00:00:00.000Z",
+      "expiresAt": "2027-03-05T00:00:00.000Z",
+      "capabilities": {
+        "reasoning": null,
+        "coding": null,
+        "structuredOutput": true,
+        "vision": false,
+        "toolUse": true,
+        "longContext": false
+      },
+      "taskAffinity": {
+        "planning_architecture": null,
+        "frontend_visual": null,
+        "backend_core": null,
+        "tdd_debugging": null,
+        "static_review": null,
+        "delivery_evidence": null
+      },
+      "costTier": null,
+      "latencyTier": null,
+      "reliabilityBaseline": null,
+      "supportedEfforts": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "recommendedEffort": "low",
+      "evidence": [
+        {
+          "source": "https://learn.chatgpt.com/docs/models",
+          "checkedAt": "2026-09-05"
+        }
+      ]
+    },
+    {
+      "provider": "openai",
+      "adapter": "codex-builtin",
+      "modelId": "gpt-5.6-sol",
+      "displayName": "gpt-5.6-sol",
+      "qualityTier": "unrated",
+      "checkedAt": "2026-09-05T00:00:00.000Z",
+      "expiresAt": "2027-03-05T00:00:00.000Z",
+      "capabilities": {
+        "reasoning": null,
+        "coding": null,
+        "structuredOutput": true,
+        "vision": false,
+        "toolUse": true,
+        "longContext": false
+      },
+      "taskAffinity": {
+        "planning_architecture": null,
+        "frontend_visual": null,
+        "backend_core": null,
+        "tdd_debugging": null,
+        "static_review": null,
+        "delivery_evidence": null
+      },
+      "costTier": null,
+      "latencyTier": null,
+      "reliabilityBaseline": null,
+      "supportedEfforts": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "recommendedEffort": "low",
+      "evidence": [
+        {
+          "source": "https://learn.chatgpt.com/docs/models",
+          "checkedAt": "2026-09-05"
+        }
+      ]
+    },
+    {
+      "provider": "openai",
+      "adapter": "openai-api",
+      "modelId": "gpt-5.4-mini",
+      "displayName": "gpt-5.4-mini",
+      "qualityTier": "unrated",
+      "checkedAt": "2026-09-05T00:00:00.000Z",
+      "expiresAt": "2027-03-05T00:00:00.000Z",
+      "capabilities": {
+        "reasoning": null,
+        "coding": null,
+        "structuredOutput": true,
+        "vision": true,
+        "toolUse": true,
+        "longContext": false
+      },
+      "taskAffinity": {
+        "planning_architecture": null,
+        "frontend_visual": null,
+        "backend_core": null,
+        "tdd_debugging": null,
+        "static_review": null,
+        "delivery_evidence": null
+      },
+      "costTier": null,
+      "latencyTier": null,
+      "reliabilityBaseline": null,
+      "supportedEfforts": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "recommendedEffort": "low",
+      "evidence": [
+        {
+          "source": "https://developers.openai.com/api/docs/models/gpt-5.4-mini",
+          "checkedAt": "2026-09-05"
+        }
+      ]
+    },
+    {
+      "provider": "anthropic",
+      "adapter": "claude-code-builtin",
+      "modelId": "claude-sonnet-5",
+      "displayName": "claude-sonnet-5",
+      "qualityTier": "unrated",
+      "checkedAt": "2026-09-05T00:00:00.000Z",
+      "expiresAt": "2027-03-05T00:00:00.000Z",
+      "capabilities": {
+        "reasoning": null,
+        "coding": null,
+        "structuredOutput": true,
+        "vision": false,
+        "toolUse": true,
+        "longContext": false
+      },
+      "taskAffinity": {
+        "planning_architecture": null,
+        "frontend_visual": null,
+        "backend_core": null,
+        "tdd_debugging": null,
+        "static_review": null,
+        "delivery_evidence": null
+      },
+      "costTier": null,
+      "latencyTier": null,
+      "reliabilityBaseline": null,
+      "supportedEfforts": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "recommendedEffort": "low",
+      "evidence": [
+        {
+          "source": "https://platform.claude.com/docs/en/models/overview",
+          "checkedAt": "2026-09-05"
+        }
+      ]
+    },
+    {
+      "provider": "anthropic",
+      "adapter": "anthropic-api",
+      "modelId": "claude-sonnet-5",
+      "displayName": "claude-sonnet-5",
+      "qualityTier": "unrated",
+      "checkedAt": "2026-09-05T00:00:00.000Z",
+      "expiresAt": "2027-03-05T00:00:00.000Z",
+      "capabilities": {
+        "reasoning": null,
+        "coding": null,
+        "structuredOutput": true,
+        "vision": true,
+        "toolUse": true,
+        "longContext": false
+      },
+      "taskAffinity": {
+        "planning_architecture": null,
+        "frontend_visual": null,
+        "backend_core": null,
+        "tdd_debugging": null,
+        "static_review": null,
+        "delivery_evidence": null
+      },
+      "costTier": null,
+      "latencyTier": null,
+      "reliabilityBaseline": null,
+      "supportedEfforts": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "recommendedEffort": "low",
+      "evidence": [
+        {
+          "source": "https://platform.claude.com/docs/en/models/overview",
+          "checkedAt": "2026-09-05"
+        }
+      ]
+    },
+    {
+      "provider": "google",
+      "adapter": "gemini-cli-builtin",
+      "modelId": "gemini-2.5-flash",
+      "displayName": "gemini-2.5-flash",
+      "qualityTier": "unrated",
+      "checkedAt": "2026-09-05T00:00:00.000Z",
+      "expiresAt": "2027-03-05T00:00:00.000Z",
+      "capabilities": {
+        "reasoning": null,
+        "coding": null,
+        "structuredOutput": true,
+        "vision": false,
+        "toolUse": true,
+        "longContext": false
+      },
+      "taskAffinity": {
+        "planning_architecture": null,
+        "frontend_visual": null,
+        "backend_core": null,
+        "tdd_debugging": null,
+        "static_review": null,
+        "delivery_evidence": null
+      },
+      "costTier": null,
+      "latencyTier": null,
+      "reliabilityBaseline": null,
+      "supportedEfforts": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "recommendedEffort": "low",
+      "evidence": [
+        {
+          "source": "https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash",
+          "checkedAt": "2026-09-05"
+        }
+      ]
+    },
+    {
+      "provider": "google",
+      "adapter": "gemini-api",
+      "modelId": "gemini-2.5-flash",
+      "displayName": "gemini-2.5-flash",
+      "qualityTier": "unrated",
+      "checkedAt": "2026-09-05T00:00:00.000Z",
+      "expiresAt": "2027-03-05T00:00:00.000Z",
+      "capabilities": {
+        "reasoning": null,
+        "coding": null,
+        "structuredOutput": true,
+        "vision": true,
+        "toolUse": true,
+        "longContext": false
+      },
+      "taskAffinity": {
+        "planning_architecture": null,
+        "frontend_visual": null,
+        "backend_core": null,
+        "tdd_debugging": null,
+        "static_review": null,
+        "delivery_evidence": null
+      },
+      "costTier": null,
+      "latencyTier": null,
+      "reliabilityBaseline": null,
+      "supportedEfforts": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "recommendedEffort": "low",
+      "evidence": [
+        {
+          "source": "https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash",
+          "checkedAt": "2026-09-05"
+        }
+      ]
+    },
+    {
+      "provider": "deepseek",
+      "adapter": "deepseek-api",
+      "modelId": "deepseek-v4-pro",
+      "displayName": "deepseek-v4-pro",
+      "qualityTier": "unrated",
+      "checkedAt": "2026-09-05T00:00:00.000Z",
+      "expiresAt": "2027-03-05T00:00:00.000Z",
+      "capabilities": {
+        "reasoning": null,
+        "coding": null,
+        "structuredOutput": true,
+        "vision": false,
+        "toolUse": true,
+        "longContext": false
+      },
+      "taskAffinity": {
+        "planning_architecture": null,
+        "frontend_visual": null,
+        "backend_core": null,
+        "tdd_debugging": null,
+        "static_review": null,
+        "delivery_evidence": null
+      },
+      "costTier": null,
+      "latencyTier": null,
+      "reliabilityBaseline": null,
+      "supportedEfforts": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "recommendedEffort": "low",
+      "evidence": [
+        {
+          "source": "https://api-docs.deepseek.com/updates/",
+          "checkedAt": "2026-09-05"
+        }
+      ]
+    },
+    {
+      "provider": "zai",
+      "adapter": "zai-general-api",
+      "modelId": "glm-5",
+      "displayName": "glm-5",
+      "qualityTier": "unrated",
+      "checkedAt": "2026-09-05T00:00:00.000Z",
+      "expiresAt": "2027-03-05T00:00:00.000Z",
+      "capabilities": {
+        "reasoning": null,
+        "coding": null,
+        "structuredOutput": true,
+        "vision": false,
+        "toolUse": true,
+        "longContext": false
+      },
+      "taskAffinity": {
+        "planning_architecture": null,
+        "frontend_visual": null,
+        "backend_core": null,
+        "tdd_debugging": null,
+        "static_review": null,
+        "delivery_evidence": null
+      },
+      "costTier": null,
+      "latencyTier": null,
+      "reliabilityBaseline": null,
+      "supportedEfforts": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "recommendedEffort": "low",
+      "evidence": [
+        {
+          "source": "https://docs.z.ai/guides/llm/glm-5",
+          "checkedAt": "2026-09-05"
+        }
+      ]
+    },
+    {
+      "provider": "zai",
+      "adapter": "zai-coding-api",
+      "modelId": "glm-5",
+      "displayName": "glm-5",
+      "qualityTier": "unrated",
+      "checkedAt": "2026-09-05T00:00:00.000Z",
+      "expiresAt": "2027-03-05T00:00:00.000Z",
+      "capabilities": {
+        "reasoning": null,
+        "coding": null,
+        "structuredOutput": true,
+        "vision": false,
+        "toolUse": true,
+        "longContext": false
+      },
+      "taskAffinity": {
+        "planning_architecture": null,
+        "frontend_visual": null,
+        "backend_core": null,
+        "tdd_debugging": null,
+        "static_review": null,
+        "delivery_evidence": null
+      },
+      "costTier": null,
+      "latencyTier": null,
+      "reliabilityBaseline": null,
+      "supportedEfforts": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "recommendedEffort": "low",
+      "evidence": [
+        {
+          "source": "https://docs.z.ai/guides/llm/glm-5",
+          "checkedAt": "2026-09-05"
+        }
+      ]
+    }
+  ]
+}

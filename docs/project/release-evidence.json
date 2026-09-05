@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "status": "superseded",
+  "replacement": "ReleaseManifestV1 plus VerificationReportV1 artifacts",
+  "note": "Historical manual release flags are not accepted. See docs/RELEASING.md."
+}

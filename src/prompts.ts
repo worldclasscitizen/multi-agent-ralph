@@ -1,11 +1,21 @@
-import type { CriticAssessment, EvidencePacket, RouteDecision, RouteEntry, TaskContract } from "./types.js";
+import type {
+  CriticAssessment,
+  EvidencePacket,
+  RouteDecision,
+  RouteEntry,
+  TaskContract,
+} from "./types.js";
 import { loadRubric } from "./evaluator.js";
+import { TaskContractDraftSchema } from "./contracts.js";
 
 const CANONICAL_STATE = `현재 저장소 파일, Git HEAD·diff, 결정적 검증 결과가 세션 기억보다 우선합니다.
 프로젝트 절대 경로 밖을 수정하지 마세요. Git commit·push·배포와 Ralph 내부 상태 변경을 하지 마세요.
 비공개 사고과정을 출력하지 말고 판단 요약, 수행 행동, 검증 가능한 증거만 반환하세요.`;
 
-export function contractPlannerPrompt(request: string, projectRoot: string): string {
+export function contractPlannerPrompt(
+  request: string,
+  projectRoot: string,
+): string {
   return `당신은 Ralph의 작업 계약 작성자입니다. 사용자의 자연어 요청을 하나의 실행 가능한 TaskContract JSON으로 바꾸세요.
 ${CANONICAL_STATE}
 
@@ -22,6 +32,11 @@ ${CANONICAL_STATE}
 검증 명령은 비대화형이며 실제 프로젝트에서 실행 가능한 것만 제안하세요.
 요청하지 않은 외부 서비스 변경, 배포, push를 범위에 넣지 마세요.
 JSON 객체만 출력하며 id, approvedHash, approvedAt은 생략하세요.
+다음 JSON Schema를 정확히 따르세요. 목표 필드는 goal이며 objective가 아닙니다.
+Worker와 간선은 다음 그래프 계획 단계가 작성합니다. 이 계약에 workers, integration, finalValidation 또는 projectRoot 필드를 추가하지 마세요.
+필수 배열 필드는 적용 사항이 없어도 빈 배열로 포함하세요.
+TaskContract JSON Schema:
+${JSON.stringify(TaskContractDraftSchema)}
 
 projectRoot: ${projectRoot}
 사용자 요청:
@@ -102,7 +117,11 @@ ${evidence ? JSON.stringify(evidence) : "(없음)"}
 {"connectionId":"...","modelId":"...","reasoningEffort":"...","sessionPolicy":"fresh|continue","rationale":"간결한 판단 근거"}`;
 }
 
-export function metaPrompt(contract: TaskContract, assessment: CriticAssessment, evidence?: EvidencePacket): string {
+export function metaPrompt(
+  contract: TaskContract,
+  assessment: CriticAssessment,
+  evidence?: EvidencePacket,
+): string {
   return `당신은 Ralph Meta-Prompter입니다. 승인된 작업 계약의 범위는 바꾸지 말고 Critic 증거를 다음 Worker가 해결할 실행 지시로 최적화하세요.
 ${CANONICAL_STATE}
 한국어 존댓말로 작성하고, 구체적인 파일 후보·검증 순서·금지사항을 포함하세요.
@@ -118,7 +137,12 @@ ${JSON.stringify(assessment)}
 ${evidence ? JSON.stringify(evidence) : "(첫 반복)"}`;
 }
 
-export function workerPrompt(contract: TaskContract, instructions: string, head: string, evidence?: EvidencePacket): string {
+export function workerPrompt(
+  contract: TaskContract,
+  instructions: string,
+  head: string,
+  evidence?: EvidencePacket,
+): string {
   return `당신은 Ralph Worker입니다. 승인된 단일 작업 계약을 실제 프로젝트에 구현하세요.
 ${CANONICAL_STATE}
 Git HEAD: ${head}

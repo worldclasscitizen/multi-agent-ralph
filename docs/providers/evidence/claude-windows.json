@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "kind": "live-smoke",
+  "provider": "claude",
+  "model": "sonnet",
+  "platform": "win32",
+  "node": "v24.11.1",
+  "checkedAt": "2026-09-04T21:26:35.693Z",
+  "checks": [
+    {
+      "name": "structured_output",
+      "status": "failed",
+      "durationMs": 3549,
+      "error": "Error: Failed to authenticate. API Error: 401 OAuth access token has expired. Re-authenticate to continue."
+    },
+    {
+      "name": "file_change_and_deterministic_verification",
+      "status": "blocked",
+      "reason": "Expired provider credential"
+    },
+    {
+      "name": "fresh_request_isolation",
+      "status": "blocked",
+      "reason": "Expired provider credential"
+    },
+    {
+      "name": "cancel_and_await_close",
+      "status": "pass",
+      "durationMs": 421,
+      "confirmed": "adapter returned after subprocess close"
+    }
+  ],
+  "support": "compatible",
+  "cliVersion": "2.1.158 (Claude Code)",
+  "authentication": "authenticated",
+  "credentialBlocked": true,
+  "allSmokeChecksPassed": false
+}

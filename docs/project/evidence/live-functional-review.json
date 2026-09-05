@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "type": "functional_failure_review",
+  "failedReport": "live-functional.json",
+  "failedReportSha256": "643b7993c52ccadbd4d6b1b6916860eae5f5a0bbf048b55f463450710deb89eb",
+  "runId": "run-8d700c7e-e441-49b8-ab87-7cd44141b11b",
+  "runtimeStatus": "awaiting_input",
+  "stoppedAt": "contract-planner",
+  "graphGenerated": false,
+  "workersStarted": 0,
+  "calls": 2,
+  "totalCalls": 17,
+  "remainingCalls": 7,
+  "activeMs": 515096,
+  "responses": [
+    {
+      "sha256": "4904b8791cea2b95c9c10e5aff8cce5a71d220dbee0964ae74c46f4cbe01fe3a",
+      "fields": [
+        "taskType",
+        "executionProfile",
+        "projectRoot",
+        "objective",
+        "requirements",
+        "workers",
+        "integration",
+        "finalValidation",
+        "constraints"
+      ],
+      "goalPresent": false,
+      "objectivePresent": true
+    },
+    {
+      "sha256": "a7590f47ddbe1813416d3f7cbf23c9887f2d8e4e6c7bbc2755dae644995167e2",
+      "fields": [
+        "taskType",
+        "executionProfile",
+        "projectRoot",
+        "objective",
+        "requirements",
+        "workers",
+        "integration",
+        "finalValidation",
+        "constraints"
+      ],
+      "goalPresent": false,
+      "objectivePresent": true
+    }
+  ],
+  "cause": "The contract prompt named TaskContract but supplied no field schema. Both responses used objective instead of goal and included graph structures in the contract.",
+  "correction": "Use one explicit draft JSON schema in the planner prompt and draft validator. Preserve programmatic contract compatibility. Reject malformed output with named field errors. The corrected generated-graph mock completes in eight calls; it has not been retested live."
+}

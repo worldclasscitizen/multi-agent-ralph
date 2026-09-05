@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "kind": "live-smoke",
+  "provider": "codex",
+  "model": "gpt-5.4-mini",
+  "platform": "win32",
+  "node": "v24.11.1",
+  "checkedAt": "2026-09-04T21:24:05.419Z",
+  "checks": [
+    {
+      "name": "structured_output",
+      "status": "pass",
+      "durationMs": 5727,
+      "usage": {
+        "inputTokens": 13318,
+        "outputTokens": 34,
+        "cachedTokens": 3328,
+        "reasoningTokens": 16,
+        "totalTokens": 13352
+      }
+    },
+    {
+      "name": "file_change_and_deterministic_verification",
+      "status": "pass",
+      "durationMs": 22188,
+      "usage": {
+        "inputTokens": 57320,
+        "outputTokens": 361,
+        "cachedTokens": 46080,
+        "reasoningTokens": 68,
+        "totalTokens": 57681
+      },
+      "artifact": "conformance.txt"
+    },
+    {
+      "name": "fresh_request_isolation",
+      "status": "pass",
+      "durationMs": 4822,
+      "usage": {
+        "inputTokens": 13319,
+        "outputTokens": 35,
+        "cachedTokens": 3328,
+        "reasoningTokens": 21,
+        "totalTokens": 13354
+      }
+    },
+    {
+      "name": "cancel_and_await_close",
+      "status": "pass",
+      "durationMs": 473,
+      "confirmed": "adapter returned after subprocess close"
+    }
+  ],
+  "support": "compatible",
+  "cliVersion": "codex-cli 0.153.1",
+  "authentication": "authenticated",
+  "allSmokeChecksPassed": true
+}

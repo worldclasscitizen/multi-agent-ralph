@@ -15,6 +15,7 @@
 # 종속성
 node_modules/
 dist/
+.release/
 __pycache__/
 *.pyc
 .DS_Store

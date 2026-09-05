@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-04T22:14:18.605Z",
+  "version": "0.3.0-beta.0",
+  "baselineCommit": "e04b387fca1b10ae6668b6b6223fb8c8a530712a",
+  "platform": "win32",
+  "node": "v24.11.1",
+  "git": "git version 2.45.1.windows.1",
+  "unitIntegrationTests": {
+    "passed": 113,
+    "failed": 0
+  },
+  "browserTests": {
+    "passed": 3,
+    "failed": 0
+  },
+  "globalCoverage": {
+    "lines": {
+      "total": 11143,
+      "covered": 6438,
+      "skipped": 0,
+      "pct": 57.77
+    },
+    "statements": {
+      "total": 11143,
+      "covered": 6438,
+      "skipped": 0,
+      "pct": 57.77
+    },
+    "functions": {
+      "total": 332,
+      "covered": 231,
+      "skipped": 0,
+      "pct": 69.57
+    },
+    "branches": {
+      "total": 1962,
+      "covered": 1446,
+      "skipped": 0,
+      "pct": 73.7
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "criticalCoverage": [
+    {
+      "file": "graph/scheduler.ts",
+      "lines": 100,
+      "branches": 93.1
+    },
+    {
+      "file": "graph/revisions.ts",
+      "lines": 100,
+      "branches": 95.65
+    },
+    {
+      "file": "runtime/supervisor.ts",
+      "lines": 98.02,
+      "branches": 90
+    },
+    {
+      "file": "runtime/recovery.ts",
+      "lines": 92.18,
+      "branches": 90.9
+    },
+    {
+      "file": "runtime/transitions.ts",
+      "lines": 100,
+      "branches": 100
+    },
+    {
+      "file": "storage/journal.ts",
+      "lines": 98.44,
+      "branches": 97.05
+    },
+    {
+      "file": "storage/run-store.ts",
+      "lines": 97.58,
+      "branches": 96.38
+    },
+    {
+      "file": "workspace/manager.ts",
+      "lines": 100,
+      "branches": 93.93
+    },
+    {
+      "file": "workspace/integration.ts",
+      "lines": 95.06,
+      "branches": 94.44
+    },
+    {
+      "file": "workspace/transaction.ts",
+      "lines": 91.3,
+      "branches": 95.83
+    }
+  ],
+  "scope": "Local mock/protocol/Git/browser evidence; does not replace live-provider or cross-platform release gates"
+}
